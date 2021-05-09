@@ -388,6 +388,7 @@ ifneq ($(STATIC_LINKING), 1)
 endif
 
 COMMONFLAGS += -DWANT_ZLIB -DHAVE_CONFIG_H -D__LIBRETRO__ -DCORE_NAME=\"$(EMUTYPE)\"
+COMMONFLAGS += -MMD -MP
 
 include Makefile.common
 
@@ -404,6 +405,9 @@ LDFLAGS     += -lm $(fpic)
 # properly in that case.
 #CFLAGS      += -std=c99
 CXXFLAGS    += -std=c++98
+
+OBJOUT   = -o
+LINKOUT  = -o
 
 ifeq ($(platform), theos_ios)
 	COMMON_FLAGS := -DIOS -DARM $(COMMON_DEFINES) $(INCFLAGS) -I$(THEOS_INCLUDE_PATH) -Wno-error
@@ -423,16 +427,18 @@ else
 endif
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $^ -o $@
+	$(CC) $(CFLAGS) -c $(OBJOUT)$@ $<
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $^ -o $@
+	$(CXX) $(CXXFLAGS) -c $(OBJOUT)$@ $<
 
 %.o: %.cc
-	$(CXX) $(CXXFLAGS) -c $^ -o $@
+	$(CXX) $(CXXFLAGS) -c $(OBJOUT)$@ $<
 
 clean:
 	rm -f $(OBJECTS) $(TARGET)
 
 .PHONY: clean
 endif
+
+-include $(OBJECTS:%.o=%.d)
