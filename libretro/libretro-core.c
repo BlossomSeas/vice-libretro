@@ -2706,7 +2706,7 @@ void retro_set_environment(retro_environment_t cb)
       },
 #if !defined(__X64DTV__)
       {
-         "vice_sid_model",
+         "vice_sid_model_dummy",
          "Audio > SID Model",
          "C64 has '6581', C64C has '8580'.",
          {
