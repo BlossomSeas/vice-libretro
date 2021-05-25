@@ -42,6 +42,9 @@
 #endif
 
 #ifdef __LIBRETRO__
+#  ifdef _WIN32
+#    include <mmintrin.h>
+#  endif
 #else
 #ifdef HAVE_MMINTRIN_H
 #  include <mmintrin.h>
@@ -249,6 +252,40 @@ inline O clip(I input)
     return static_cast<O>(input);
 }
 
+int sid_volume = 100;
+extern "C" int retro_getsidvolume();
+static short adjust_volume(int vol)
+{
+    static int overflow_count = 1;
+    static int overflow_limit = 200;
+
+    if (overflow_count < overflow_limit) {
+        sid_volume = retro_getsidvolume();
+    }
+
+    vol = (vol * sid_volume) / 100;
+
+
+    if (vol > 32767) {
+        vol = 32767;
+        overflow_count++;
+    }
+
+    if (vol < -32768) {
+        vol = -32768;
+        overflow_count++;
+    }
+
+
+    if (overflow_count % overflow_limit == 0) {
+        sid_volume = (sid_volume * 95) / 100;
+
+        printf("SID volume overflow --> %d new volume\n", sid_volume);
+    }
+
+    return (short) vol;
+}
+
 bool SincResampler::input(int input)
 {
     bool ready = false;
@@ -265,7 +302,7 @@ bool SincResampler::input(int input)
 
     if (sampleOffset < 1024)
     {
-        outputValue = fir(sampleOffset);
+        outputValue = adjust_volume(fir(sampleOffset));
         ready = true;
         sampleOffset += cyclesPerSample;
     }
