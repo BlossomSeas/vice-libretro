@@ -2215,7 +2215,7 @@ void retro_set_environment(retro_environment_t cb)
       },
 #if defined(__X64__) || defined(__X64SC__) || defined(__X64DTV__) || defined(__X128__) || defined(__XSCPU64__) || defined(__XCBM5x0__) || defined(__XVIC__) || defined(__XPLUS4__)
       {
-         "vice_aspect_ratio",
+         "vice_aspect_ratio_dummy",
          "Video > Pixel Aspect Ratio",
          "Hotkey toggling disables this option until core restart.",
          {
