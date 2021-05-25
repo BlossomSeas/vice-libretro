@@ -2140,7 +2140,7 @@ void retro_set_environment(retro_environment_t cb)
          "disabled"
       },
       {
-         "vice_drive_true_emulation",
+         "vice_drive_true_emulation_dummy",
          "Media > True Drive Emulation",
          "Loads much slower, but some games need it.\nRequired for 'JiffyDOS', 'Automatic Load Warp' and LED driver interface!",
          {
