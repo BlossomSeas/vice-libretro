@@ -76,6 +76,10 @@
 #include "vicii_ptoing_vpl.h"
 #include "vicii_rgb_vpl.h"
 #include "vicii_vice_vpl.h"
+#ifdef __LIBRETRO__
+#include "vicii_vivid_vpl.h"
+#include "vicii_external_vpl.h"
+#endif
 
 #include "vdc_comp_vpl.h"
 #include "vdc_deft_vpl.h"
@@ -124,6 +128,10 @@ static embedded_palette_t palette_files[] = {
     { "vdc-comp", "vdc-comp.vpl", 16, vdc_comp_vpl },
     { "vdc-deft", "vdc-deft.vpl", 16, vdc_deft_vpl },
     { "vice", "vice.vpl", 16, vicii_vice_vpl },
+#ifdef __LIBRETRO__
+    { "vivid", "vivid.vpl", 16, vicii_vivid_vpl },
+    { "external", "external.vpl", 16, vicii_external_vpl },
+#endif
     EMBEDDED_PALETTE_LIST_END
 };
 

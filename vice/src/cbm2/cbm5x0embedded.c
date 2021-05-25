@@ -61,6 +61,10 @@
 #include "vicii_ptoing_vpl.h"
 #include "vicii_rgb_vpl.h"
 #include "vicii_vice_vpl.h"
+#ifdef __LIBRETRO__
+#include "vicii_vivid_vpl.h"
+#include "vicii_external_vpl.h"
+#endif
 
 static embedded_t cbm2files[] = {
     { "basic.500", 0x4000, 0x4000, 0x4000, cbm2basic500_embedded },
@@ -89,6 +93,10 @@ static embedded_palette_t palette_files[] = {
     { "ptoing", "ptoing.vpl", 16, vicii_ptoing_vpl },
     { "rgb", "rgb.vpl", 16, vicii_rgb_vpl },
     { "vice", "vice.vpl", 16, vicii_vice_vpl },
+#ifdef __LIBRETRO__
+    { "vivid", "vivid.vpl", 16, vicii_vivid_vpl },
+    { "external", "external.vpl", 16, vicii_external_vpl },
+#endif
     EMBEDDED_PALETTE_LIST_END
 };
 

@@ -2413,7 +2413,7 @@ void retro_set_environment(retro_environment_t cb)
       },
 #if defined(__XVIC__)
       {
-         "vice_vic20_external_palette",
+         "vice_vic20_external_palette_dummy",
          "Video > VIC Color Palette",
          "'Colodore' is recommended for the most accurate colors.",
          {
@@ -2428,7 +2428,7 @@ void retro_set_environment(retro_environment_t cb)
       },
 #elif defined(__XPLUS4__)
       {
-         "vice_plus4_external_palette",
+         "vice_plus4_external_palette_dummy",
          "Video > TED Color Palette",
          "'Colodore' is recommended for the most accurate colors.",
          {
@@ -2442,7 +2442,7 @@ void retro_set_environment(retro_environment_t cb)
       },
 #elif defined(__XPET__)
       {
-         "vice_pet_external_palette",
+         "vice_pet_external_palette_dummy",
          "Video > CRTC Color Palette",
          "",
          {
@@ -2456,7 +2456,7 @@ void retro_set_environment(retro_environment_t cb)
       },
 #elif defined(__XCBM2__)
       {
-         "vice_cbm2_external_palette",
+         "vice_cbm2_external_palette_dummy",
          "Video > CRTC Color Palette",
          "",
          {
@@ -2470,7 +2470,7 @@ void retro_set_environment(retro_environment_t cb)
       },
 #elif !defined(__X64DTV__)
       {
-         "vice_external_palette",
+         "vice_external_palette_dummy",
          "Video > VIC-II Color Palette",
          "'Colodore' is recommended for most accurate colors.",
          {
