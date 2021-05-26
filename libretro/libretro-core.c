@@ -1769,6 +1769,8 @@ static void free_vice_carts(void)
    vice_carts_info = NULL;
 }
 
+#include "retro_getvars.c"
+
 void retro_set_environment(retro_environment_t cb)
 {
    environ_cb = cb;
@@ -1815,6 +1817,10 @@ void retro_set_environment(retro_environment_t cb)
    /* Core options */
    static struct retro_core_option_definition core_options[] =
    {
+
+#include "retro_setenv_front.h"
+#include "retro_dummy_option.h"
+
 #if defined(__XVIC__)
       {
          "vice_vic20_model",
@@ -2101,6 +2107,9 @@ void retro_set_environment(retro_environment_t cb)
          "autostart"
       },
 #endif
+
+#include "retro_dummy_option.h"
+
 #if !defined(__XPET__) && !defined(__X64DTV__)
       /* Sublabel and options filled dynamically in retro_set_environment() */
       {
@@ -2202,6 +2211,9 @@ void retro_set_environment(retro_environment_t cb)
          "disabled"
       },
 #endif /* !defined(__X64DTV__) */
+
+#include "retro_dummy_option.h"
+
       {
          "vice_video_options_display",
          "Show Video Options",
@@ -2576,6 +2588,9 @@ void retro_set_environment(retro_environment_t cb)
          "1000"
       },
 #endif
+
+#include "retro_dummy_option.h"
+
       {
          "vice_audio_options_display",
          "Show Audio Options",
@@ -2877,6 +2892,9 @@ void retro_set_environment(retro_environment_t cb)
          },
          "48000"
       },
+
+#include "retro_dummy_option.h"
+
 #if !defined(__XPET__) && !defined(__XCBM2__)
       {
          "vice_analogmouse_deadzone",
@@ -3053,6 +3071,9 @@ void retro_set_environment(retro_environment_t cb)
          "disabled"
       },
 #endif
+
+#include "retro_dummy_option.h"
+
       {
          "vice_mapping_options_display",
          "Show Mapping Options",
@@ -3405,6 +3426,10 @@ void retro_set_environment(retro_environment_t cb)
          "disabled"
       },
 #endif
+
+#include "retro_dummy_option.h"
+#include "retro_setenv_back.h"
+
       { NULL, NULL, NULL, {{0}}, NULL },
    };
 
@@ -3614,6 +3639,8 @@ static void update_variables(void)
 #ifdef RETRO_DEBUG
    log_cb(RETRO_LOG_INFO, "Updating variables, UI finalized = %d\n", retro_ui_finalized);
 #endif
+
+#include "retro_getvars_front.h"
 
 #if !defined(__XPET__)
    var.key = "vice_cartridge";
@@ -5485,6 +5512,8 @@ static void update_variables(void)
    option_display.key = "vice_vicii_color_brightness",
    environ_cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_DISPLAY, &option_display);
 #endif
+
+#include "retro_getvars_back.h"
 }
 
 void emu_reset(int type)
