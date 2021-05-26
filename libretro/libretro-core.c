@@ -2228,7 +2228,7 @@ void retro_set_environment(retro_environment_t cb)
          "auto"
       },
       {
-         "vice_zoom_mode",
+         "vice_zoom_mode_dummy",
          "Video > Zoom Mode",
          "Crop borders to fit various host screens. Requirements in RetroArch settings:\n- Aspect Ratio: Core provided,\n- Integer Scale: Off.",
          {
